@@ -1,0 +1,55 @@
+site_name: leetcode
+nav:
+  - Home: index.md
+  - Easy: easy.md
+  - Medium: medium.md
+  - Hard: hard.md
+theme:
+  name: material
+  favicon: https://assets.leetcode.com/static_assets/public/webpack_bundles/images/logo-dark.e99485d9b.svg
+  logo: https://assets.leetcode.com/static_assets/public/webpack_bundles/images/logo-dark.e99485d9b.svg
+  font:
+    text: Roboto
+  palette:
+    - scheme: default
+      primary: red
+      accent: red
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+    - scheme: slate
+      primary: red
+      accent: red
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to light mode
+  features:
+    - header.autohide
+repo_name: coding-armadillo/leetcode
+repo_url: https://github.com/coding-armadillo/leetcode
+plugins:
+  - search
+  - tags
+  - glightbox:
+      auto_caption: True
+  - minify:
+      minify_html: true
+  - git-revision-date-localized:
+      type: date
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.emoji
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/coding-armadillo
