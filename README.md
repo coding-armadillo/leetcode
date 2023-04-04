@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="https://assets.leetcode.com/static_assets/public/webpack_bundles/images/logo-dark.e99485d9b.svg" alt="logo" height="128">
+    <img src="https://assets.leetcode.com/static_assets/public/webpack_bundles/images/logo-dark.e99485d9b.svg" alt="logo" width="25%">
 </div>
 
 # leetcode
