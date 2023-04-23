@@ -110,10 +110,15 @@ hide:
         f.write(text)
 
 with open("docs/index.md", "w") as f:
-    text = """# LeetCode
+    text = """
+<figure markdown>
+![Logo](https://assets.leetcode.com/static_assets/public/webpack_bundles/images/logo-dark.e99485d9b.svg){ width="128" }
+</figure>
+
+# LeetCode
 
 ## Summary by Difficulty
-"""
+""".lstrip()
 
     for folder, total in summary.items():
         text += f"""
