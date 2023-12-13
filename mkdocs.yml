@@ -25,6 +25,10 @@ theme:
         name: Switch to light mode
   features:
     - header.autohide
+    - content.code.copy
+    - navigation.top
+    - navigation.tabs
+    - navigation.footer
 repo_name: coding-armadillo/leetcode
 repo_url: https://github.com/coding-armadillo/leetcode
 plugins:

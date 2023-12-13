@@ -12,4 +12,5 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-python@v2
       - run: pip install -r requirements-docs.txt
+      - run: python update_docs.py
       - run: mkdocs gh-deploy --force

@@ -1,22 +1,11 @@
-import pickle
 import subprocess
-from argparse import ArgumentParser
-from collections import Counter
 from pathlib import Path
 
 import requests
 import urllib3
-import seaborn as sns
 from bs4 import BeautifulSoup
 from tqdm import tqdm
 
-parser = ArgumentParser(
-    prog="UpdateDocs",
-    description="A helper script to update docs",
-)
-parser.add_argument("-f", "--force", action="store_true")
-args, _ = parser.parse_known_args()
-force = args.force
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 folders = ["easy", "medium", "hard"]
@@ -26,11 +15,7 @@ language_map = {
 summary = {}
 all_files = []
 
-try:
-    with open("docs/.cache", "rb") as f:
-        cache = pickle.load(f)
-except:
-    cache = {}
+cache = {}
 
 for folder in folders:
     uri = f"src/{folder}"
@@ -50,11 +35,6 @@ for folder in folders:
     total = len(solutions)
     summary[folder] = total
 
-    if not force and set(solutions.keys()) < set(cache.keys()):
-        print(f"⛔ Skipped {uri}: no update needed")
-        print()
-        continue
-
     try:
         subprocess.call(
             [
@@ -73,7 +53,7 @@ hide:
     text += f"""
 # Difficulty - {folder.capitalize()}
 """
-    prompt = "📖 Refreshing Docs"
+    prompt = f"📖 Refreshing {folder.capitalize()}"
     for solution, languages in tqdm(sorted(solutions.items()), desc=prompt):
         url = f"https://leetcode.com/problems/{solution}/"
         if solution in cache:
@@ -124,16 +104,4 @@ with open("docs/index.md", "w") as f:
         text += f"""
 - [{folder.capitalize()} ^{total}^]({folder}.md)
 """
-    text += f"""
-## Summary by First Character
-
-![summary-by-first-char](summary-by-first-char.png)
-"""
     f.write(text)
-
-with open("docs/.cache", "wb") as f:
-    pickle.dump(cache, f)
-
-s = Counter([k[0] for k in cache.values()])
-ax = sns.barplot(x=list(s.keys()), y=list(s.values()))
-ax.get_figure().savefig("docs/summary-by-first-char.png", bbox_inches="tight")
